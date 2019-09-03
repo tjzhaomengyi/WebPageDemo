@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <script src="https://libs.baidu.com/jquery/1.3.2/jquery.min.js"></script>
+    <title>Title</title>
+    <script type="text/javascript">
+        $(function () {
+            alert("hello jquery")
+            var $title = $("#mytitle")
+            alert($title.html())
+        })
+    </script>
+
+    <script>
+        function init(){
+            alert("haha")
+            var domtitle = document.getElementById("mytitle")
+            alert(domtitle.innerHTML)
+        }
+    </script>
+
+</head>
+<body onload="init()">
+    <p id="mytitle" title="biaoti">你最喜欢的颜色</p>
+</body>
+</html>
