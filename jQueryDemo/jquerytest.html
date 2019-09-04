@@ -3,14 +3,225 @@
 <head>
     <meta charset="UTF-8">
 
-    <script src="https://libs.baidu.com/jquery/1.3.2/jquery.min.js"></script>
+    <script src="//libs.baidu.com/jquery/1.8.3/jquery.js"></script>
     <title>Title</title>
+
+    <style type="text/css">
+        .mystyle{
+            color:yellowgreen;
+        }
+
+        .mystyle2{
+            font-size:50px;
+            background-color:blue;
+        }
+        div{
+           height:200px;
+            width:200px;
+            background-color:lightgray;
+        }
+    </style>
+
+
     <script type="text/javascript">
         $(function () {
-            alert("hello jquery")
-            var $title = $("#mytitle")
-            alert($title.html())
-        })
+            // alert("hello jquery")
+            // var $title = $("#mytitle")
+            // alert($title.html())
+            // var $title = $("#mytitle");
+            // alert($title.html()+"_jQuery");
+            // alert($title[0].innerHTML +"_jQueryToDom");
+            // alert($title.get(0).innerHTML + "_jQueryToDom2");
+
+
+            //标签选择器
+            // alert($("p").length);
+
+            //类选择器
+            // alert($(".mystyle").html())
+            // //id选择其
+            // alert($("#mytitle3").html())
+
+            //并集选择器
+            // alert($(".mystyle,#mytitle3").length)
+
+            //交集选择器
+            // alert($("p.mystyle").length)
+            // alert($("p#mytitle").length)
+            // alert($("*").length)
+
+            //相邻选择器
+            // alert($("#b+li").html())
+            //同辈选择器
+            // alert($("#b~li").length)
+
+            //后代选择器
+            // alert($("body li").length)
+            //子代选择器
+            // alert($("ul>li").length)
+
+            //属性选择器
+            // alert($("[class=mystyle]").html())
+
+            //过滤选择器
+            alert($("ul>li").first().html());
+            alert($("ul>li:first").html());
+
+            alert($("ul>li").eq(2).html());
+
+            $("h1").click(function () {
+                alert("单击事件")
+            });
+
+            // $("div").mouseover(function () {
+            //     alert("悬浮")
+            // }).mouseleave(function () {
+            //     alert("离开")
+            // });
+
+            // $("body").keydown(function (event) {
+            //     if(event.keyCode == 13) {
+            //         alert("嗯呀")
+            //     }
+            // }).keypress(
+            //     function () {
+            //         alert("到底")
+            //     }
+            // ).keyup(function () {
+            //     alert("松开")
+            // })
+
+            $("#uid").focus(function () {
+                //当前元素就是文本框，当前元素可以用this表示，但是this是dom元素，变jquery形式
+                $(this).css("background-color","red")
+            }).blur(function () {
+                $(this).css("background-color","white")
+            })
+
+            $("#uid").bind("click",function () {
+                alert("bind形式单机")
+            })
+
+            // $("body").bind({"keydown":function() {
+            //     alert("keydown");
+            // },"keyup":function(){
+            //     alert("keyup")
+            // }})
+            
+            //复合事件
+            $("h2").hover(function () {
+                alert("悬浮")
+            },function () {
+                alert("离开")
+            })
+
+            // $("body").toggle(function () {
+            //     $(this).css("background-color","red")
+            // },function () {
+            //     $(this).css("background-color","blue")
+            // },function () {
+            //     $(this).css("background-color","white")
+            // })
+
+            $("#color4Id").css("color","red");
+
+            $("#color4Id").css({"color":"red","font-size":"30px","background-color":"gray"})
+
+            $("#mytestId").addClass("mystyle mystyle2")
+            $("#mytestId").removeClass("mystyle")
+
+            $("#mytestId").click(function () {
+                $("#mytestId").toggleClass("mystyle mystyle2")
+            })
+
+            // alert($("#mytestId").text())
+
+            //css的DOM操作
+            // alert($("#divId2").height()+ ","+ $("#divId2").width());
+            var $divoff = $("#divId2").offset()
+            // alert($divoff.left+","+$divoff.top)
+
+            //通过子节点修改父节点
+            $("#bid").click(function () {
+                $(this).offsetParent().css("border","10px solid green")
+            })
+
+            $("#uage").blur(function () {
+                var $age = $("#uage").val();
+                if(!($age>0 && $age<100)){
+                    alert("年龄不对")
+                }
+            })
+
+        });
+
+        function test(){
+            $("input:focus").css("background-color","yellow")
+        }
+
+        function myBind(){
+            $("#uname").bind("click",function () {
+                alert("绑定")
+            })
+        }
+        
+        function myUnbind() {
+            $("#uname").unbind("click");
+        }
+
+        function myShow() {
+            // $("h3").show(3000,myCallback)
+            // $("h3").fadeIn()
+            $("h3").slideDown()
+
+        }
+
+        function myHide() {
+            // $("h3").hide(2000,myCallback)
+            // $("h3").fadeOut()
+            $("h3").slideUp()
+
+        }
+
+        function myCallback() {
+            alert("显示/隐藏完毕")
+        }
+        
+        function myTest() {
+            $("#mytestId").html("<div style='background-color:yellowgreen'> <strong>hellowrld</strong></div>")
+            alert($("#uid").val());
+            $("#uid").val("1234");
+            //内部插入
+            var $myele = $("<li>xxxx</li>")
+            // $("ul").append($myele)
+            // $("ul").prepend($myele)
+
+            //外部插入
+            var $myele1 = $("<p>hello node ...</p>")
+            // $("ul").after($myele1)
+            // $("ul").insertAfter($myele1)
+
+            // $("ul>li:eq(1)").replaceWith("<li>xx</li>")
+
+            //删除节点
+            // $("ul>li:eq(1)").remove()
+
+            // alert($("#uid").attr("name"))
+
+            var $lis = $("ul").children("li")
+            // alert($lis.length)
+            // alert($("ul>li:eq(1)").siblings().html())
+            // alert($("ul>li:eq(1)").parent().html())
+            // alert($("ul>li:eq(1)").siblings(":odd").css("background-color","pink"))
+            alert($("ul>li").each(function () {
+               alert($(this).html())
+            }))
+
+        }
+        
+        
+
+
     </script>
 
     <script>
@@ -22,7 +233,58 @@
     </script>
 
 </head>
-<body onload="init()">
-    <p id="mytitle" title="biaoti">你最喜欢的颜色</p>
+<body>
+    <p id="mytitle" >你最喜欢的颜色</p>
+    <p class="mystyle" >this my style</p>
+    <p id="mytitle3" >你最喜欢的颜色3</p>
+
+    <ul>
+        <li>aaa</li>
+        <li id="b">bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+        <li>eee</li>
+    </ul>
+
+    id<input type="text"/><br/>
+    username<input type="text" id="uname">
+    <input type="button" value="绑定" onclick="myBind()">
+    <input type="button" value="解绑" onclick="myUnbind()">
+
+    <input type="button" value="测试" onclick="test()">
+
+    <h1>h1h1h1h1</h1>
+
+    <div id="divId2">
+        some text in div ....
+    </div>
+
+    <br/>
+
+    <input type="text" value= "9527" id="uid" name="uidtext"/>
+    <button onclick="myTest()">test</button>
+
+    <h2 style="border:1px solid red"> h222</h2>
+
+
+    <h3>h33333</h3>
+    <button onclick="myShow()">显示</button>
+    <button onclick="myHide()">隐藏</button>
+
+    <h4 id="color4Id">h4444</h4>
+
+    <p id="mytestId">
+        <font color="purple">some text...</font>
+    </p>
+    <button onclick="myTest()">test</button>
+
+    <br/>
+    <div style="position:relative;height:300px;weight:300px;border:10px solid red;">
+        abc
+        <input id="bid" type="button" value="子节点"/>
+    </div>
+
+    <input id="uage"/>
+
 </body>
 </html>
